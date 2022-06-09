@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 
+const COUNTER_NORMAL_CSS_CLASSES = "badge m-2 bg-primary";
+const COUNTER_WARNING_CSS_CLASSES = "badge m-2 bg-warning";
+
 class Counter extends Component {
   state = {
-    count: this.props.start,
+    value: this.props.start,
     tags: [],
     tags1: ["tag1", "tag2", "tag3"],
   };
@@ -21,16 +24,19 @@ class Counter extends Component {
   }
 
   handleIncrement = (incr) => {
-    this.setState({ count: this.state.count + 1 });
+    this.setState({ value: this.state.value + 1 });
   };
 
   render() {
-    let counterCssClasses = "badge m-2 ";
-    counterCssClasses += this.state.count === 0 ? "bg-warning" : "bg-primary";
+    let counterCssClasses =
+      this.state.value === 0
+        ? COUNTER_WARNING_CSS_CLASSES
+        : COUNTER_NORMAL_CSS_CLASSES;
 
     return (
       <React.Fragment>
         <div>
+          {/* <h1>#{this.props.id}</h1> */}
           <span className={counterCssClasses}>{this.formatCount()}</span>
           <button
             className="btn btn-secondary btn-sm"
@@ -44,8 +50,8 @@ class Counter extends Component {
   }
 
   formatCount() {
-    const { count } = this.state;
-    return count === 0 ? "Zero" : count;
+    const { value } = this.state;
+    return value === 0 ? "Zero" : value;
   }
 }
 Counter.defaultProps = {

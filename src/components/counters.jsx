@@ -10,7 +10,7 @@ class Counters extends Component {
     return (
       <React.Fragment>
         {this.state.counters.map((c) => (
-          <Counter key={c.id} start={c.start} />
+          <Counter key={c.id} start={c.start} id={c.id} />
         ))}
         <Counter start={0} />
         <Counter start={1} />
